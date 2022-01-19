@@ -7,14 +7,22 @@ import {
   TextInput,
   View,
 } from "react-native";
+import * as placeActions from "../store/places-actions";
 import Colors from "../constants/Colors";
+import { useDispatch } from "react-redux";
 
-export const NewPlaceScreen = () => {
+export const NewPlaceScreen = ({ navigation }) => {
   const [title, setTitle] = useState("");
+  const dispatch = useDispatch();
 
   const titleChangeHandler = (text) => {
     // you could add validation
     setTitle(text);
+  };
+
+  const savePlaceHandler = () => {
+    dispatch(placeActions.addNewPlace(title));
+    navigation.goBack();
   };
 
   return (
@@ -26,7 +34,11 @@ export const NewPlaceScreen = () => {
           onChangeText={titleChangeHandler}
           value={title}
         />
-        <Button title="Save Place" color={Colors.primary} onPress={() => {}} />
+        <Button
+          title="Save Place"
+          color={Colors.primary}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   );
