@@ -1,6 +1,5 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-
 import { PlacesListScreen } from "../screens/PlacesListScreen";
 import { PlaceDetailScreen } from "../screens/PlaceDetailScreen";
 import { NewPlaceScreen } from "../screens/NewPlaceScreen";
