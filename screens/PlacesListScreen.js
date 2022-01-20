@@ -1,14 +1,34 @@
 import React from "react";
-import { Platform, Text, View } from "react-native";
+import { FlatList, Platform, Text, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { CustomHeaderButton } from "../components/CustomHeaderButton";
 import { Ionicons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+import { PlaceItem } from "../components/PlaceItem";
 
 export const PlacesListScreen = ({ navigation }) => {
+  const places = useSelector((state) => state.places.places);
+
   return (
-    <View>
-      <Text>PlacesListScreen</Text>
-    </View>
+    <FlatList
+      keyExtractor={(item) => item.id}
+      data={places}
+      renderItem={({ item: { id, title } }) => {
+        return (
+          <PlaceItem
+            image={null}
+            title={title}
+            address={null}
+            onSelect={() => {
+              navigation.navigate("PlaceDetail", {
+                placeTitle: title,
+                placeId: id,
+              });
+            }}
+          />
+        );
+      }}
+    />
   );
 };
 
