@@ -5,6 +5,7 @@ import { CustomHeaderButton } from "../components/CustomHeaderButton";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { PlaceItem } from "../components/PlaceItem";
+import Colors from "../constants/Colors";
 
 export const PlacesListScreen = ({ navigation }) => {
   const places = useSelector((state) => state.places.places);
@@ -13,10 +14,10 @@ export const PlacesListScreen = ({ navigation }) => {
     <FlatList
       keyExtractor={(item) => item.id}
       data={places}
-      renderItem={({ item: { id, title } }) => {
+      renderItem={({ item: { id, title, imageUri } }) => {
         return (
           <PlaceItem
-            image={null}
+            image={imageUri}
             title={title}
             address={null}
             onSelect={() => {
