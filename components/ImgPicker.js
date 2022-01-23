@@ -35,7 +35,7 @@ export const ImgPicker = ({onImageTaken}) => {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 0.5,
+      quality: 0.1,
     });
 
     setPickedImage(image.uri);

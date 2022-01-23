@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, Platform, Text, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { CustomHeaderButton } from "../components/CustomHeaderButton";
 import { Ionicons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PlaceItem } from "../components/PlaceItem";
 import Colors from "../constants/Colors";
+import * as placeActions from "../store/places-actions";
 
 export const PlacesListScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const places = useSelector((state) => state.places.places);
+
+  useEffect(() => {
+    dispatch(placeActions.getPlaces());
+  }, [dispatch]);
+console.log(places)
 
   return (
     <FlatList
