@@ -10,12 +10,34 @@ export default (state = initialState, action) => {
     case GET_PLACES:
       return {
         places: action.places.map(
-          (place) => new Place(place.id.toString(), place.title, place.imageUri)
+          (place) =>
+            new Place(
+              place.id.toString(),
+              place.title,
+              place.imageUri,
+              place.address,
+              place.lat,
+              place.lng
+            )
         ),
       };
     case ADD_NEW_PLACE:
-      const { id, title, image } = action.placeData;
-      const newPlace = new Place(id.toString(), title, image);
+      const {
+        id,
+        title,
+        image,
+        address,
+        coords: { lat, lng },
+      } = action.placeData;
+
+      const newPlace = new Place(
+        id.toString(),
+        title,
+        image,
+        address,
+        lat,
+        lng
+      );
 
       return {
         places: state.places.concat(newPlace),

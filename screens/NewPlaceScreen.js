@@ -33,7 +33,7 @@ export const NewPlaceScreen = ({ navigation }) => {
   }, []);
 
   const savePlaceHandler = () => {
-    dispatch(placeActions.addNewPlace(title, image));
+    dispatch(placeActions.addNewPlace(title, image, selectedLocation));
     navigation.goBack();
   };
 

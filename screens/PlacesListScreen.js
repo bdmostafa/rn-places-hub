@@ -15,7 +15,7 @@ export const PlacesListScreen = ({ navigation }) => {
   useEffect(() => {
     dispatch(placeActions.getPlaces());
   }, [dispatch]);
-// console.log(places)
+console.log(places)
 
   return (
     <FlatList
