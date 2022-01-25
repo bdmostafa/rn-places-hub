@@ -6,7 +6,10 @@ import * as ImagePicker from "expo-image-picker";
 import { Camera } from "expo-camera";
 
 const verifyPermissions = async () => {
-  //   const result = await Permissions.askAsync(Permissions.CAMERA);
+  // const result = await Permissions.askAsync(
+  //   Permissions.CAMERA,
+  //   Permissions.CAMERA_ROLL
+  // );
   const { granted } = await Camera.requestCameraPermissionsAsync();
 
   if (!granted) {
@@ -21,7 +24,7 @@ const verifyPermissions = async () => {
   return true;
 };
 
-export const ImgPicker = ({onImageTaken}) => {
+export const ImgPicker = ({ onImageTaken }) => {
   const [pickedImage, setPickedImage] = useState(null);
 
   const takeImageHandler = async () => {
@@ -39,7 +42,7 @@ export const ImgPicker = ({onImageTaken}) => {
     });
 
     setPickedImage(image.uri);
-    onImageTaken(image.uri)
+    onImageTaken(image.uri);
   };
 
   return (
@@ -63,7 +66,7 @@ export const ImgPicker = ({onImageTaken}) => {
 const styles = StyleSheet.create({
   imagePicker: {
     alignItems: "center",
-    marginBottom: 10
+    marginBottom: 10,
   },
   imagePreview: {
     width: "100%",

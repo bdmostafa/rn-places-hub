@@ -11,18 +11,25 @@ import MapView, { Marker } from "react-native-maps";
 import Colors from "../constants/Colors";
 
 export const MapScreen = ({ navigation }) => {
-  const [selectedLocation, setSelectedLocation] = useState();
+  const initialLocation = navigation.getParam("initialLocation");
+  const readonly = navigation.getParam("readonly");
+
+  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
 
   let markerCoordinates;
 
   const mapRegion = {
-    latitude: 23.9224695,
-    longitude: 90.2685842,
+    latitude: initialLocation ? initialLocation.lat : 23.9224695,
+    longitude: initialLocation ? initialLocation.lng : 90.2685842,
     latitudeDelta: 0.0967,
     longitudeDelta: 0.0561,
   };
 
   const selectLocationHandler = ({ nativeEvent }) => {
+    if (readonly) {
+      return;
+    }
+
     setSelectedLocation({
       lat: nativeEvent.coordinate.latitude,
       lng: nativeEvent.coordinate.longitude,
@@ -67,6 +74,9 @@ export const MapScreen = ({ navigation }) => {
 
 MapScreen.navigationOptions = ({ navigation }) => {
   const saveFn = navigation.getParam("saveLocation");
+
+  const readonly = navigation.getParam("readonly");
+  if (readonly) return {};
 
   return {
     headerRight: () => (

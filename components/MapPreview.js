@@ -2,12 +2,7 @@ import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import ENV from "../env";
 
-export const MapPreview = ({
-  location,
-  children,
-  style,
-  onPress,
-}) => {
+export const MapPreview = ({ location, children, style, onPress }) => {
   const apiKey = ENV().googleApiKey;
 
   let imagePreviewUrl;

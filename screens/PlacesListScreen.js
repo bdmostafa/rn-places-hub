@@ -15,18 +15,18 @@ export const PlacesListScreen = ({ navigation }) => {
   useEffect(() => {
     dispatch(placeActions.getPlaces());
   }, [dispatch]);
-console.log(places)
+  console.log(places);
 
   return (
     <FlatList
       keyExtractor={(item) => item.id}
       data={places}
-      renderItem={({ item: { id, title, imageUri } }) => {
+      renderItem={({ item: { id, title, imageUri, address } }) => {
         return (
           <PlaceItem
             image={imageUri}
             title={title}
-            address={null}
+            address={address}
             onSelect={() => {
               navigation.navigate("PlaceDetail", {
                 placeTitle: title,
