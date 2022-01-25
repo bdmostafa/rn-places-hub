@@ -1,8 +1,13 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import ENV from "../env";
 
-export const MapPreview = ({ location, children, style }) => {
+export const MapPreview = ({
+  location,
+  children,
+  style,
+  onPress,
+}) => {
   const apiKey = ENV().googleApiKey;
 
   let imagePreviewUrl;
@@ -12,13 +17,16 @@ export const MapPreview = ({ location, children, style }) => {
   }
 
   return (
-    <View style={{ ...styles.mapPreview, ...style }}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={{ ...styles.mapPreview, ...style }}
+    >
       {location ? (
         <Image style={styles.mapImage} source={{ uri: imagePreviewUrl }} />
       ) : (
         children
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
