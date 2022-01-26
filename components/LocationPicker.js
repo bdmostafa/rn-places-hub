@@ -32,15 +32,14 @@ export const LocationPicker = ({ navigation, onLocationPicked }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [pickedLocation, setPickedLocation] = useState();
 
-  const mapPickedLocation = navigation.getParam('selectedLocation');
+  const mapPickedLocation = navigation.getParam("selectedLocation");
 
   useEffect(() => {
-      if(mapPickedLocation) {
-          setPickedLocation(mapPickedLocation)
-          onLocationPicked(mapPickedLocation)
-      }
-
-  }, [onLocationPicked, mapPickedLocation])
+    if (mapPickedLocation) {
+      setPickedLocation(mapPickedLocation);
+      onLocationPicked(mapPickedLocation);
+    }
+  }, [onLocationPicked, mapPickedLocation]);
 
   const getLocationHandler = async () => {
     const hasPermission = await verifyPermissions();
@@ -53,11 +52,16 @@ export const LocationPicker = ({ navigation, onLocationPicked }) => {
       setIsFetching(true);
 
       const location = await Location.getCurrentPositionAsync({
-        timeInterval: 5000,
+        // timeInterval: 5000,
+        timeout: 5000,
       });
-      //   console.log(location);
 
       setPickedLocation({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      });
+
+      onLocationPicked({
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       });

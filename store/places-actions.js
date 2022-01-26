@@ -9,7 +9,6 @@ export const getPlaces = () => {
   return async (dispatch) => {
     try {
       const dbFetchResult = await fetchPlaces();
-      //   console.log(dbFetchResult);
 
       dispatch({ type: GET_PLACES, places: dbFetchResult.rows._array });
     } catch (err) {
@@ -71,7 +70,6 @@ export const addNewPlace = (title, image, location) => {
       });
     } catch (err) {
       console.error(err);
-
       throw new Error(err.message);
     }
   };

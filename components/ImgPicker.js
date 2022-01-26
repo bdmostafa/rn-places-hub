@@ -49,7 +49,7 @@ export const ImgPicker = ({ onImageTaken }) => {
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
         {!pickedImage ? (
-          <Text>No image picked yet.</Text>
+          <Text onPress={takeImageHandler}> No image picked yet. </Text>
         ) : (
           <Image style={styles.image} source={{ uri: pickedImage }} />
         )}
